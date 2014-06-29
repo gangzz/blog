@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Articles</title>
+	<meta name="author" content="洋 王" />
+	<!-- Date: 2014-06-26 -->
+</head>
+<body>
+	<table>
+		<tr>
+			<td>Title</td>
+			<td>Text</td>
+		</tr>
+		<% @articles.each do |a| %>
+		<tr>
+			<td><%= a.title %></td>
+			<td><%= a.text %></td>
+			<td><%= link_to 'Show', article_path(a)%></td>
+			<td><%= link_to 'Edit', edit_article_path(a) %></td>
+			<td><%= link_to 'Destroy', article_path(a), method: :delete, data: {confirm: 'Are you sure?'}%>
+		</tr>
+		<% end %>
+	</table>
+</body>
+</html>
+

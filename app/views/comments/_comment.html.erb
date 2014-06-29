@@ -1,0 +1,13 @@
+<div>
+	
+	<p>
+		<strong>Commenter:</strong>
+		<%= comment.commentor%>
+	</p>
+	<p>
+		<strong>Content:</strong>
+		<%= comment.body%>
+	</p>
+	<%= link_to 'Destory', [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'}%>
+</div>
+
