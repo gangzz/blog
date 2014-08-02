@@ -1,0 +1,24 @@
+<div id="menu-container" class="menu">
+	<div id="menu-inner-container" class="container center">
+		<a class="menu-item left-float" href="/">
+			HOME
+		</a>
+		<a class="menu-item left-float" href="/about">
+			ABOUT
+		</a>
+		<% if session[:username] %>
+			<a class="menu-item right-float" href="/management">
+				<%= session[:username]%>
+			</a>
+		<% else %>
+			<a class="menu-item right-float" href="/toLogin">
+				login
+			</a>
+		<% end %>
+	</div>
+</div>
+<div id="banner-container">
+	<div id="banner-img" class="three-quarter-panel center">
+		<img src="/images/logo.jpg" style="width: 100%"/>
+	</div>
+</div>

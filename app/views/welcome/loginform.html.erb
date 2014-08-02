@@ -1,0 +1,12 @@
+
+<% if @warn%>
+	<strong><%= @warn%></strong><br>
+<% end %>
+
+<%= form_tag('login', method: :post) do%>
+<%= label_tag(:name, 'name:')%>
+<%= text_field_tag :name%><br/>
+<%= label_tag(:password, 'password:')%>
+<%= text_field_tag :password%><br />
+<%= submit_tag 'submit'%>
+<% end %>

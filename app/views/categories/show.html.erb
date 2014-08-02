@@ -1,0 +1,20 @@
+<p>
+	Parent: <%= @parent.name%>
+</p>
+<hr />
+<ul>
+	<% @parent.children.each do |child|%>
+		<li>
+			<%= child.name%>
+		</li>
+	<% end %>
+</ul>
+
+<%= form_for @parent.children.build, url: category_path(@parent), method: :post do |category|%>
+		<%= category.label :name%>
+		<%= category.text_field :name%>
+		<br />
+		<%= hidden_field_tag 'parent', @parent.id%>
+		<%= category.submit%>
+<% end %>
+

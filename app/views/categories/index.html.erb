@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Categories</title>
+	<meta name="author" content="洋 王" />
+	<!-- Date: 2014-06-26 -->
+</head>
+<body>
+	<table>
+		<% @categories.each do |category| %>
+		<tr>
+			<td><%= link_to category.name, category_path(category) %></td>
+			<td>
+				<%= link_to 'destroy', category_path(category), method: :delete%>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<hr />
+	<%= form_for :category, url: categories_path, method: :post do |category|%>
+		<%= category.label :name%>
+		<%= category.text_field :name%>
+		<br />
+		<%= category.submit%>
+	<% end %>
+</body>
+</html>
+

@@ -10,8 +10,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  #<<: *default
+  #database: db/development.sqlite3
+  adapter: mysql
+  encoding: utf8
+  database: blog
+  username: "admin"
+  password: "admin"
+  socket: "/tmp/mysql.sock"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,4 +28,11 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: db/pro.sqlite3
+  #adapter: mysql2
+  #encoding: utf8
+  #database: blog
+  #pool: 5
+  #username: admin
+  #password: admin
+  #socket: 3306

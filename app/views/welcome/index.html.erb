@@ -1,2 +1,75 @@
-<h1>Hello, Rails!</h1>
-<%= link_to 'My Blog', controller: 'articles' %>
+
+<%= stylesheet_link_tag 'base.css'%>
+<%= stylesheet_link_tag 'simplePagination.css'%>
+<%= stylesheet_link_tag 'header_footer.css'%>
+<%= javascript_include_tag 'trd/jquery.simplePagination.js'%>
+
+<script type="text/javascript">
+	$(pagination);
+	$(categories);
+	function pagination() {
+	    $("#pagination").pagination({
+	        items: <%= @articleSize%>,
+	        itemsOnPage: 10,
+	        cssStyle: 'light-theme'
+	    });
+	}
+	function categories(){
+		var data = eval("(" + '<%=raw @jsondata%>' + ")");
+		var parent = $("#category-list");
+		for(var idx in data){
+			_drawNode(data[idx], parent);
+		}
+	}
+	function _drawNode(node, parentEle){
+		var nodeEle = $('<li>');
+		nodeEle.append('<a href="#">' + node['name'] + '</a>');
+		parentEle.append(nodeEle);
+		if(node["children"].length){
+			var subParent = $('<ul>');
+			nodeEle.append(subParent);
+			for(var idx in node['children']){
+				_drawNode(node['children'][idx], subParent);
+			}
+		}
+		
+	}
+	
+</script>
+
+<div id="page-content" class='full-panel center container'>
+	<div id='main-content' class="center container">
+		<div id='article-container' class='three-quarter-panel left-float'>
+			<div id="article-list">
+				<% @articles.each do |article|%>
+					<div class="article-item ">
+						<div class='article-item-title'>
+							<%= article.title%>
+						</div>
+						<div class="article-item-abstract">
+							<%= article.abstract%>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<!-- pagination -->
+			<div id="pagination" class="container full-panel">
+			</div>
+		</div>
+		<div id='category-nav' class='quarter-panel right-float'>
+			<ul class="navlist">
+				<li class="navlist-title">
+					分类
+				</li>
+				<li class="navlist-content">
+					<ul id="category-list">
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+	<div id="footer-content">
+		
+	</div>
+</div>

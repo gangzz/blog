@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628123546) do
+ActiveRecord::Schema.define(version: 20140703141118) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
+    t.text     "abstract"
     t.text     "text"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "commentor"
@@ -28,6 +41,6 @@ ActiveRecord::Schema.define(version: 20140628123546) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
 
 end

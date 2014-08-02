@@ -1,0 +1,33 @@
+div#menu-container {
+	height: 40px;
+	background: #000000;
+}
+div#menu-inner-container{
+	width: 80%;
+}
+div#menu-container a {
+	display: block;
+	padding: 24px 20px 0 20px;
+	
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+div#banner-container {
+	height: 200px;
+	background: #53585e;
+}
+div#banner-img  {
+	padding: 20px 0 0 0 ;
+}
+div#banner-img img {
+	height: 140px;
+}
+
+div#footer {
+	height: 100px;
+	width: 100%;
+	
+	color: #ffffff;
+	background: #000000;
+}

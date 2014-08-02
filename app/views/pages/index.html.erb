@@ -1,0 +1,45 @@
+
+<%= stylesheet_link_tag 'simplePagination.css'%>
+<%= javascript_include_tag 'trd/jquery.simplePagination.js'%>
+
+<script type="text/javascript">
+	$(pagination);
+	function pagination() {
+		var href = document.location.href;
+    	var pagePattern=/[\d]+$/g;
+		var pageItem = href.match(pagePattern);
+		var prefix = href.substring(0, href.lastIndexOf(pageItem));
+	    $("#pagination").pagination({
+	        items: <%= @articleSize%>,
+	        itemsOnPage: 10,
+	        cssStyle: 'light-theme',
+	        currentPage: pageItem,
+	        hrefTextPrefix: prefix
+	    });
+	}
+</script>
+
+<div id="page-content" class='full-panel center container'>
+		<div id='article-container' class='full-panel left-float'>
+			<div id="article-list">
+				<% @articles.each do |article|%>
+					<div class="article-item ">
+						<div class='article-item-title'>
+							<a href="<%= page_path(article) %>">
+								<%= article.title%>
+							</a>
+						</div>
+						<div class="article-item-abstract">
+							<%= article.abstract%>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<!-- pagination -->
+			<div id="pagination" class="container full-panel">
+			</div>
+		</div>
+	<div id="footer-content">
+		
+	</div>
+</div>

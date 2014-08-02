@@ -1,0 +1,61 @@
+<head>
+  <title>PaperMan</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'base.css'%>
+  <%= stylesheet_link_tag 'header_footer.css'%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <!-- <link type="text/css" rel="stylesheet" href="/assets/base.css" />
+  <link type="text/css" rel="stylesheet" href="/assets/header_footer.css" />
+  <link type="text/css" rel="stylesheet" href="/assets/base.css" /> -->
+  
+  <script type="text/javascript">
+	function categories(){
+		var data = eval("(" + '<%=raw @jsondata%>' + ")");
+		var parent = $("#category-list");
+		if(parent.children().length > 0){
+			return;
+		}
+		for(var idx in data){
+			_drawNode(data[idx], parent);
+		}
+	}
+	function _drawNode(node, parentEle){
+		var nodeEle = $('<li>');
+		nodeEle.append('<a href="/' + node["id"] + '/pages/page/1">' + node['name'] + '</a>');
+		parentEle.append(nodeEle);
+		if(node["children"].length){
+			var subParent = $('<ul>');
+			nodeEle.append(subParent);
+			for(var idx in node['children']){
+				_drawNode(node['children'][idx], subParent);
+			}
+		}
+	}
+	$(window).on('page:change', categories);
+</script>
+</head>
+<body >
+	<div id="page-background">
+		<%= render "layouts/header" %>
+		<div id="content" class="container three-quarter-panel center">
+			<div id='article-container' class='three-quarter-panel left-float'>
+				<%= yield %>
+			</div>
+			<div id='category-nav' class='quarter-panel right-float'>
+				<ul class="navlist">
+					<li class="navlist-title">
+						分类
+					</li>
+					<li class="navlist-content">
+						<ul id="category-list">
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<%= render "layouts/footer" %>
+	</div>
+</body>
+</html>

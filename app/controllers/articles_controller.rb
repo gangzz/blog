@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
+  
+  
   def new
-    
+    @categories = Category.all
   end
   
   def index
@@ -8,7 +10,10 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params);
+    @category = Category.find(params[:article][:category])
+    @categories = Category.all
+    
+    @article = @category.articles.build(article_params)
     if @article.save
       redirect_to @article
     else
@@ -42,6 +47,7 @@ class ArticlesController < ApplicationController
   
   private
   def article_params
-    params.require(:article).permit(:title, :text);
+    params.require(:article).permit(:title, :text, :abstract);
   end
+  
 end

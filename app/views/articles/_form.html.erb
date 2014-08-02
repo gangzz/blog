@@ -1,4 +1,8 @@
-<%= form_for :article , url: articles_path do |f|%>
+<%= stylesheet_link_tag 'ckeditor/skins/moono/editor.css'%>
+<%= javascript_include_tag 'ckeditor/ckeditor.js'%>
+
+<% @url = articles_path%>
+<% @method = :post%>
 <%if @article%>
 	<% if @article.errors.any? %>
 	<div id="error_explanation">
@@ -13,8 +17,24 @@
 		</ul>
 	</div>
 	<% end %>
+	<% if @article[:id] %>
+		<% @url = article_path(@article)
+		 @method = :patch
+		 %>
+	<% end %>
 <% end %>
 
+<%= @method%>
+
+<%= form_for :article , url: @url, method: @method do |f|%>
+<p>
+	<%= f.label :category%>
+	<%= f.text_field :category%>
+</p>
+<p>
+	<%= f.label :abstract%>
+	<%= f.text_field :abstract%>
+</p>
 <p>
 	<%= f.label :title %>
 	<%= f.text_field :title %>
@@ -22,7 +42,7 @@
 
 <p>
 	<%= f.label :text %>
-	<%= f.text_area :text %>
+	<%= f.text_area :text, :class => 'ckeditor' %>
 </p>
 
 <p>
