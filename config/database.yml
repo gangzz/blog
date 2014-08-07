@@ -27,12 +27,9 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/pro.sqlite3
-  #adapter: mysql2
-  #encoding: utf8
-  #database: blog
-  #pool: 5
-  #username: admin
-  #password: admin
-  #socket: 3306
+  adapter: mysql
+  encoding: utf8
+  database: blog
+  username: "admin"
+  password: "admin"
+  socket: "/tmp/mysql.sock"
