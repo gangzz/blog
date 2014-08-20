@@ -32,4 +32,4 @@ production:
   database: blog
   username: "admin"
   password: "admin"
-  socket: "/tmp/mysql.sock"
+  socket: "/var/lib/mysql/mysql.sock"
