@@ -33,3 +33,4 @@ production:
   username: "admin"
   password: "admin"
   socket: "/var/lib/mysql/mysql.sock"
+  #socket: "/tmp/mysql.sock"
