@@ -1,5 +1,9 @@
 <head>
-  <title>PaperMan</title>
+	<% if @article%>
+	  <title>PaperMan <%= @article.title%></title>
+	<%else%>
+		<title>PaperMan</title>
+	<% end %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'base.css'%>
   <%= stylesheet_link_tag 'header_footer.css'%>
